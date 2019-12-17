@@ -1,0 +1,49 @@
+{
+	"model": {
+		"modelName": "New model",
+		"dbVersion": "2.x",
+		"dbVendor": "Parquet"
+	},
+	"container": {
+		"name": "New file",
+		"indexes": []
+	},
+	"collection": {
+		"collectionName": "New message",
+		"collectionUsers": [],
+		"collation": {}
+	},
+	"field": {
+		"name": "New column",
+		"bitWidth": "32",
+		"logicalType": "",
+		"signed": true,
+		"compressionCodec": "Uncompressed",
+		"encoding": ["Plain"],
+		"repetition": "required",
+		"byteLength": {
+			"valueDependencies": [{
+				"value": 12,
+				"dependency": {
+					"key": "childType",
+					"value": "fixed_len_byte_array"
+				}
+			}]
+		}
+	},
+	"patternField": {
+		"repetition": "required",
+		"name": "^[a-zA-Z0-9_.-]+$"
+	},
+	"multipleField": {
+		"primaryKey": false
+	},
+	"subschema": {},
+	"arrayItem": {},
+	"choice": {},
+	"relationship": {
+		"customProperties": {
+			"disableNoValidate": true
+		}
+	}
+}

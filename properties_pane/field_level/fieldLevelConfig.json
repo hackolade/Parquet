@@ -1,0 +1,928 @@
+/*
+* Copyright © 2016-2019 by IntegrIT S.A. dba Hackolade.  All rights reserved.
+*
+* The copyright to the computer software herein is the property of IntegrIT S.A.
+* The software may be used and/or copied only with the written permission of 
+* IntegrIT S.A. or in accordance with the terms and conditions stipulated in 
+* the agreement/contract under which the software has been supplied. 
+
+
+In order to define custom properties for any object's properties pane, you may copy/paste from the following,
+making sure that you maintain a proper JSON format.
+
+			{
+				"propertyName": "Simple text",
+				"propertyKeyword": "simpletextProp",
+				"propertyType": "text",
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Text area",
+				"propertyKeyword": "textareaProp",
+				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyType": "details",
+				"template": "textarea"
+			},
+			{
+				"propertyName": "Dropdown selection",
+				"propertyKeyword": "dropdownProp",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Option 1",
+					"Option 2",
+					"Option 3",
+					"Option 4"
+				]
+			},
+			{
+				"propertyName": "Numeric",
+				"propertyKeyword": "numericProp",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Checkbox",
+				"propertyKeyword": "checkboxProp",
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Group",
+				"propertyType": "group",
+				"propertyKeyword": "grpProp",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Simple Grp Text",
+						"propertyKeyword": "simpleGrpText",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Group Number",
+						"propertyKeyword": "grpNumber",
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false
+					}
+				]
+			},
+// “groupInput” can have the following states - 0 items, 1 item, and many items.
+// “blockInput” has only 2 states - 0 items or 1 item. 
+// This gives us an easy way to represent it as an object and not as an array internally which is beneficial for processing 
+// and forward-engineering in particular.
+			{
+				"propertyName": "Block",
+				"propertyType": "block",
+				"propertyKeyword": "grpProp",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Simple Grp Text",
+						"propertyKeyword": "simpleGrpText",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Group Number",
+						"propertyKeyword": "grpNumber",
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false
+					}
+				]
+			},
+			{
+				"propertyName": "Field List",
+				"propertyKeyword": "keyList",
+				"propertyType": "fieldList",
+				"template": "orderedList"
+			}, 
+			{
+				"propertyName": "List with attribute",
+				"propertyKeyword": "keyListOrder",
+				"propertyType": "fieldList",
+				"template": "orderedList",
+				"attributeList": [
+					"ascending",
+					"descending"
+				]
+			}
+
+*/
+
+{
+	"lowerTab": "JsonDetails",
+	"structure": {
+		"boolean": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"default",
+			"dependencies",
+			"sample",
+			"comments"
+		],
+		"int": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Bit width",
+				"propertyKeyword": "bitWidth",
+				"propertyType": "select",
+				"options": [
+					"8",
+					"16",
+					"32",
+					"64",
+					"96"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Logical type",
+				"propertyKeyword": "logicalType",
+				"propertyType": "select",
+				"dependency": {
+					"key": "bitWidth",
+					"value": "32"
+				},
+				"options": [
+					"",
+					"DATE",
+					"TIME"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Logical type",
+				"propertyKeyword": "logicalType",
+				"propertyType": "select",
+				"dependency": {
+					"key": "bitWidth",
+					"value": "64"
+				},
+				"options": [
+					"",
+					"TIME",
+					"TIMESTAMP"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Time unit",
+				"propertyKeyword": "unit",
+				"propertyType": "select",
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "bitWidth",
+							"value": "32"
+						},
+						{
+							"key": "logicalType",
+							"value": "TIME"
+						}
+					]
+				},
+				"options": [
+					"MILLIS"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Time unit",
+				"propertyKeyword": "unit",
+				"propertyType": "select",
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "bitWidth",
+							"value": "64"
+						},
+						{
+							"key": "logicalType",
+							"value": "TIME"
+						}
+					]
+				},
+				"options": [
+					"MICROS",
+					"NANOS"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Precision",
+				"propertyKeyword": "precision",
+				"propertyType": "select",
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "bitWidth",
+							"value": "64"
+						},
+						{
+							"key": "logicalType",
+							"value": "TIMESTAMP"
+						}
+					]
+				},
+				"options": [
+					"MILLIS",
+					"MICROS",
+					"NANOS"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "isAdjustedToUTC",
+				"propertyKeyword": "isAdjustedToUTC",
+				"propertyType": "checkbox",
+				"dependency": {
+					"type": "or",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": "TIME"
+						},
+						{
+							"key": "logicalType",
+							"value": "TIMESTAMP"
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Signed",
+				"propertyKeyword": "isSigned",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": ""
+				}
+			},
+			{
+				"propertyName": "Decimal",
+				"propertyKeyword": "decimal",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": ""
+				}
+			},
+			{
+				"propertyName": "Precision",
+				"propertyKeyword": "precision",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Scale",
+				"propertyKeyword": "scale",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"minimum",
+			"exclusiveMinimum",
+			"maximum",
+			"exclusiveMaximum",
+			"multipleOf",
+			"divisibleBy",
+			"pattern",
+			"default",
+			"enum",
+			"dependencies",
+			"foreignCollection",
+			"foreignField",
+			"relationshipType",
+			"sample",
+			"comments"
+		],
+		"float": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"minimum",
+			"exclusiveMinimum",
+			"maximum",
+			"exclusiveMaximum",
+			"multipleOf",
+			"divisibleBy",
+			"pattern",
+			"default",
+			"enum",
+			"dependencies",
+			"foreignCollection",
+			"foreignField",
+			"relationshipType",
+			"sample",
+			"comments"
+		],
+		"double": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"minimum",
+			"exclusiveMinimum",
+			"maximum",
+			"exclusiveMaximum",
+			"multipleOf",
+			"divisibleBy",
+			"pattern",
+			"default",
+			"enum",
+			"dependencies",
+			"foreignCollection",
+			"foreignField",
+			"relationshipType",
+			"sample",
+			"comments"
+		],
+		"binary": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Logical type",
+				"propertyKeyword": "logicalType",
+				"propertyType": "select",
+				"options": [
+					"",
+					"UTF8",
+					"ENUM",
+					"UUID"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Embedded JSON",
+				"propertyKeyword": "JSON",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": "UTF8"
+				}
+			},
+			{
+				"propertyName": "Embedded BSON",
+				"propertyKeyword": "BSON",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": ""
+				}
+			},
+			{
+				"propertyName": "Decimal",
+				"propertyKeyword": "decimal",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": ""
+				}
+			},
+			{
+				"propertyName": "Precision",
+				"propertyKeyword": "precision",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Scale",
+				"propertyKeyword": "scale",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"default",
+			"enum",
+			"dependencies",
+			"foreignCollection",
+			"foreignField",
+			"relationshipType",
+			"sample",
+			"comments"
+		],
+		"fixed_len_byte_array": [
+			"name",
+			"code",
+			"schemaId",
+			"description",
+			"type",
+			{
+				"propertyName": "Logical type",
+				"propertyKeyword": "logicalType",
+				"propertyType": "select",
+				"options": [
+					"",
+					"INTERVAL"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "Byte length",
+				"propertyKeyword": "byteLength",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"key": "logicalType",
+					"value": "INTERVAL"
+				},
+				"disabledOption": true
+			},
+			{
+				"propertyName": "Decimal",
+				"propertyKeyword": "decimal",
+				"propertyType": "checkbox",
+				"dependency": {
+					"key": "logicalType",
+					"value": ""
+				}
+			},
+			{
+				"propertyName": "Precision",
+				"propertyKeyword": "precision",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Scale",
+				"propertyKeyword": "scale",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "logicalType",
+							"value": ""
+						},
+						{
+							"key": "decimal",
+							"value": true
+						}
+					]
+				}
+			},
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			{
+				"propertyName": "CompressionCodec",
+				"propertyKeyword": "compressionCodec",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Uncompressed",
+					"Snappy",
+					"GZip",
+					"LZO",
+					"BROTLI",
+					"LZ4",
+					"ZSTD"
+				]
+			},
+			{
+				"propertyName": "Encoding",
+				"propertyKeyword": "encoding",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"Plain",
+					"Group_Var_Int",
+					"Plain_Dictionary",
+					"RLE",
+					"Bit_Packed",
+					"Delta_Binary_Packed",
+					"Delta_Length_Byte_Array",
+					"Delta_Byte_Array",
+					"RLE_Dictionary"
+				]
+			},
+			"minimum",
+			"exclusiveMinimum",
+			"maximum",
+			"exclusiveMaximum",
+			"multipleOf",
+			"divisibleBy",
+			"pattern",
+			"unit",
+			"default",
+			"enum",
+			"dependencies",
+			"foreignCollection",
+			"foreignField",
+			"relationshipType",
+			"sample",
+			"comments"
+		],
+		"null": [
+			"name",
+			"description",
+			"type",
+			"comments"
+		],
+		"___1": [],
+		"group": [
+			"name",
+			"code",
+			"sampleName",
+			"schemaId",
+			"refPath",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional",
+					"repeated"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			"minProperties",
+			"maxProperties",
+			"dependencies",
+			"additionalProperties",
+			"comments"
+		],
+		"list": [
+			"name",
+			"code",
+			"sampleName",
+			"schemaId",
+			"refPath",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			"minItems",
+			"maxItems",
+			"uniqueItems",
+			"additionalItems",
+			"comments"
+		],
+		"map": [
+			"code",
+			"sampleName",
+			"schemaId",
+			"refPath",
+			"description",
+			"type",
+			{
+				"propertyName": "Repetition level",
+				"propertyKeyword": "repetition",
+				"propertyType": "select",
+				"options": [
+					"required",
+					"optional"
+				],
+				"data": "options",
+				"valueType": "string"
+			},
+			"minProperties",
+			"maxProperties",
+			"dependencies",
+			"additionalProperties",
+			"comments"
+		]
+	}
+} 

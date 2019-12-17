@@ -1,0 +1,10 @@
+{
+	"extension": "txt",
+	"filterName": "Dremel paper",
+	"namePrefix": "Parquet",
+	"hasUpdateScript": false,
+	"level": {
+		"entity": true,
+		"container": false
+	}
+}

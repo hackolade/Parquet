@@ -1,0 +1,14 @@
+{
+	"name": "list",
+	"erdAbbreviation": "<lst>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "array",
+	"useSample": true,
+	"defaultValues": {
+		"properties": [],
+		"additionalItems": true,
+		"minItems": 1,
+		"maxItems": 1,
+		"uniqueItems": false
+	}
+}

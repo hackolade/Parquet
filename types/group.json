@@ -1,0 +1,17 @@
+{
+	"name": "group",
+	"erdAbbreviation": "<grp>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "document",
+	"useSample": true,
+	"default": true,
+	"defaultValues": {
+		"keyType": "string",
+		"dependencies": [],
+		"primaryKey": false,
+		"properties": [],
+		"minProperties": "",
+		"maxProperties": "",
+		"additionalProperties": false
+	}
+}
