@@ -14,8 +14,14 @@ module.exports = {
 			);
 
 			callback(null, dremelSchema);
-		} catch (e) {
-			callback({ message: e.message, stack: e.stack });
+		} catch (error) {
+			const errorObject = {
+				message: error.message,
+				stack: error.stack,
+			};
+
+			logger.log('error', errorObject, 'Parquet Forward-Engineering Error');
+			callback(errorObject);
 		}
 	},
 	generateContainerScript(data, logger, callback) {
@@ -28,8 +34,14 @@ module.exports = {
 				));
 
 			callback(null, dremelSchemas.join('\n\n=====================\n\n'));
-		} catch (e) {
-			callback({ message: e.message, stack: e.stack });
+		} catch (error) {
+			const errorObject = {
+				message: error.message,
+				stack: error.stack,
+			};
+
+			logger.log('error', errorObject, 'Parquet Forward-Engineering Error');
+			callback(errorObject);
 		}
 	}
 };

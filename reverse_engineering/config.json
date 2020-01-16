@@ -1,5 +1,7 @@
 {
   "menu_label": "Parquet data file",
   "name": "parquet",
-  "extensions": ["parquet"]
+  "extensions": ["parquet"],
+  "useCloudStorage": true,
+  "useMultipleFileReverse": true
 }

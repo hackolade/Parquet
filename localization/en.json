@@ -19,6 +19,7 @@
 	"TOOLBAR___SHOW_FOREIGN_MASTER": "Toggle foreign master",
 	"TOOLBAR___SHOW_MODEL_VIEW": "Toggle model views",
 	"TOOLBAR___DISTRIBUTE_ORTHOGONALLY": "Distribute messages orthogonally",
+	"TOOLBAR___REVERSE_ENGINEERING_DB": "Reverse-Engineering",
 	"OBJECT___BROWSER_BUCKET": "Files",
 	"OBJECT___BROWSER_NOT_IN_BUCKET": "Undefined file",
 	"OBJECT___BROWSER_COLLECTION": "Messages",

@@ -23,8 +23,15 @@ module.exports = {
 				containerName:"New namespace",
 				jsonSchema: JSON.stringify(preparedJSONSchema, null, 4),
 			});
-		} catch(err) {
-			callback(err);
+		} catch(error) {
+			const fileName = path.basename(data.filePath);
+			const errorObject = {
+				message: `${error.message}\nFile name: ${fileName}`,
+				stack: error.stack,
+			};
+
+			logger.log('error', errorObject, 'Parquet Reverse-Engineering Error');
+			callback(errorObject);
 		}
 	}
 };
