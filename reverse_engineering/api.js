@@ -12,7 +12,7 @@ module.exports = {
 		try {
 			const { filePath } = data;
 			const fileName = path.basename(filePath, '.parquet');
-			const { schema, metadata } = await fileReadWriteService.readParquetFile(filePath);
+			const { schema, metadata, rowGroups } = await fileReadWriteService.readParquetFile(filePath);
 			const JSONSchema = JSONConvertService.convertFieldSchemasToJSON(schema);
 			const preparedJSONSchema = pipe([
 				wrapFieldsIntoJSONSchema(fileName),
@@ -21,7 +21,7 @@ module.exports = {
 
 			callback(null, {
 				containerName:"New namespace",
-				jsonSchema: JSON.stringify(preparedJSONSchema, null, 4),
+				jsonSchema: JSON.stringify( { ...preparedJSONSchema, rowGroups }, null, 4),
 			});
 		} catch(error) {
 			const fileName = path.basename(data.filePath);

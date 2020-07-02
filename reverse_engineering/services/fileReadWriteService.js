@@ -1,5 +1,6 @@
 const parquet = require('parquetjs-lite');
 const rawFileDataTransformService = require('./rawFileDataTransformService');
+const { getRowGroups } = require('./rawFileDataTransformService');
 
 const getMetadataFromFile = filePath =>
 	new Promise(async (resolve, reject) => {
@@ -29,12 +30,15 @@ const readParquetFile = async filePath => {
 	try {
 		const metadata = await getRawMetadataFromFile(filePath);
 		const { key_value_metadata, created_by } = metadata;
+		const schema = rawFileDataTransformService.transformMetadata(metadata);
+		
 		return {
 			metadata: {
 				key_value_metadata,
 				created_by,
 			},
-			schema: rawFileDataTransformService.transformMetadata(metadata),
+			schema,
+			rowGroups: getRowGroups(metadata, schema)
 		};
 	} catch(err) {
 		throw new Error(err);

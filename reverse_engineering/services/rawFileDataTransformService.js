@@ -5,6 +5,7 @@ const generateSchemaFieldsTree = require('../helpers/generateSchemaFieldsTree');
 const defineSchemaFieldsPath = require('../helpers/defineSchemaFieldsPath');
 const getFieldAdditionalData = require('../helpers/getFieldAdditionalData');
 const pipe = require('../../helpers/pipe');
+const { KEY_VALUE } = require('../constants');
 
 const transformRepetitionType = repetitionTypeEnum => ({
 	repetitionType: parquet_util.getThriftEnum(
@@ -80,6 +81,21 @@ const getFieldsMetadata = rawMetadata => {
 	return firstRowGroup.columns;
 }
 
+const getRowGroups = (rawMetadata, schema) => {
+	if (!Array.isArray(rawMetadata.row_groups)) {
+		return [];
+	}
+
+	return rawMetadata.row_groups.map(rowGroup => ({
+		rowGroupColumns: (rowGroup.columns || [])
+			.map(column => ({
+				name: column.meta_data.path_in_schema
+					.filter(name => name !== KEY_VALUE)
+					.join('.')
+			}))
+	}));
+};
+
 const transformMetadata = rawMetadata => {
 	const { schema } = rawMetadata;
 	const fieldsMetadata = getFieldsMetadata(rawMetadata);
@@ -93,4 +109,5 @@ const transformMetadata = rawMetadata => {
 
 module.exports = {
 	transformMetadata,
+	getRowGroups,
 }
