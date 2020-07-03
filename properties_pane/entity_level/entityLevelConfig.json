@@ -167,6 +167,11 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "rowGroups",
 				"propertyTooltip": "",
 				"structure": [{
+					"propertyName": "Name",
+					"propertyKeyword": "rowGroupName",
+					"propertyType": "text"
+				},
+				{
 					"propertyName": "Columns",
 					"propertyKeyword": "rowGroupColumns",
 					"propertyType": "compositeKeySetter",

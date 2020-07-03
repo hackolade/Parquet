@@ -86,7 +86,8 @@ const getRowGroups = (rawMetadata, schema) => {
 		return [];
 	}
 
-	return rawMetadata.row_groups.map(rowGroup => ({
+	return rawMetadata.row_groups.map((rowGroup, index) => ({
+		rowGroupName: `Row group ${index}`,
 		rowGroupColumns: (rowGroup.columns || [])
 			.map(column => ({
 				name: column.meta_data.path_in_schema
