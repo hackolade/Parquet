@@ -22,5 +22,11 @@
 		"foreignField": [],
 		"enum": [],
 		"sample": ""
+	},
+	"descriptor": {
+		"schema": {
+			"logicalType": "INTERVAL"
+		},
+		"format": "PnYnMnDTnHnMnS"
 	}
 }
