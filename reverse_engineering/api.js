@@ -7,6 +7,7 @@ const includeMetadataInJSONSchema = require('./helpers/includeMetadataInJSONSche
 const pipe = require('../helpers/pipe');
 const path = require('path');
 const adaptJsonSchema = require('./helpers/adaptJsonSchema/adaptJsonSchema');
+const { setDependencies } = require('./appDependencies');
 
 module.exports = {
 	async reFromFile(data, logger, callback) {
@@ -36,11 +37,11 @@ module.exports = {
 		}
 	},
 
-	adaptJsonSchema(data, logger, callback) {
+	adaptJsonSchema(data, logger, callback, app) {
+		setDependencies(app);
 		logger.log('info', 'Adaptation of JSON Schema started...', 'Adapt JSON Schema');
 		try {
 			const jsonSchema = JSON.parse(data.jsonSchema);
-
 			const adaptedJsonSchema = adaptJsonSchema(jsonSchema);
 
 			logger.log('info', 'Adaptation of JSON Schema finished.', 'Adapt JSON Schema');

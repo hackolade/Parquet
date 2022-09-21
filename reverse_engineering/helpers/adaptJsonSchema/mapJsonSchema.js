@@ -1,9 +1,9 @@
-const isPlainObject = require('lodash.isplainobject');
-const partial = require('lodash.partial');
+const { dependencies } = require("../../appDependencies");
 
 const add = (obj, properties) => Object.assign({}, obj, properties);
 
 const mapJsonSchema = (jsonSchema, callback) => {
+	const _ = dependencies.lodash;
 	const mapProperties = (properties, mapper) => Object.keys(properties).reduce((newProperties, propertyName) => {
 		return add(newProperties, {
 			[propertyName]: mapper(properties[propertyName])
@@ -12,7 +12,7 @@ const mapJsonSchema = (jsonSchema, callback) => {
 	const mapItems = (items, mapper) => {
 		if (Array.isArray(items)) {
 			return items.map(jsonSchema => mapper(jsonSchema));
-		} else if (isPlainObject(items)) {
+		} else if (_.isPlainObject(items)) {
 			return mapper(items);
 		} else {
 			return items;
@@ -29,16 +29,16 @@ const mapJsonSchema = (jsonSchema, callback) => {
 			});
 		}, jsonSchema);
 	};
-	if (!isPlainObject(jsonSchema)) {
+	if (!_.isPlainObject(jsonSchema)) {
 		return jsonSchema;
 	}
-	const mapper = partial(mapJsonSchema, partial.placeholder, callback);
+	const mapper = _.partial(mapJsonSchema, _.partial.placeholder, callback);
 	const propertiesLike = [ 'properties', 'definitions', 'patternProperties' ];
 	const itemsLike = [ 'items', 'oneOf', 'allOf', 'anyOf', 'not' ];
 	
 	const copyJsonSchema = Object.assign({}, jsonSchema);
-	const jsonSchemaWithNewProperties = applyTo(propertiesLike, copyJsonSchema, partial(mapProperties, partial.placeholder, mapper));
-	const newJsonSchema = applyTo(itemsLike, jsonSchemaWithNewProperties, partial(mapItems, partial.placeholder, mapper));
+	const jsonSchemaWithNewProperties = applyTo(propertiesLike, copyJsonSchema, _.partial(mapProperties, _.partial.placeholder, mapper));
+	const newJsonSchema = applyTo(itemsLike, jsonSchemaWithNewProperties, _.partial(mapItems, _.partial.placeholder, mapper));
 
 	return callback(newJsonSchema);
 };
