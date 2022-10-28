@@ -12,6 +12,7 @@
 		"maxLength": "",
 		"pattern": "",
 		"default": "",
+		"format": "",
 		"primaryKey": false,
 		"relationshipType": "",
 		"parentRelationship": "",
