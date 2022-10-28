@@ -586,6 +586,7 @@ making sure that you maintain a proper JSON format.
 				"data": "options",
 				"valueType": "string"
 			},
+			"format",
 			{
 				"propertyName": "Embedded JSON",
 				"propertyKeyword": "JSON",
