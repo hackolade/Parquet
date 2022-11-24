@@ -23,5 +23,66 @@
 		"enum": [],
 		"bitWidth": "32",
 		"sample": ""
-	}
+	},
+	"descriptor": [{
+		"schema": {
+			"bitWidth": "32",
+			"logicalType": "DATE"
+		},
+		"format": "YYYY-MM-DD"
+	}, {
+		"schema": {
+			"bitWidth": "32",
+			"logicalType": "TIME"
+		},
+		"format": "hh:mm:ss"
+	}, {
+		"schema": {
+			"bitWidth": "32",
+			"logicalType": "TIME",
+			"unit": "MILLIS"
+		},
+		"format": "hh:mm:ss.nnn"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIME",
+			"unit": "MICROS"
+		},
+		"format": "hh:mm:ss.nnnnnn"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIME",
+			"unit": "NANOS"
+		},
+		"format": "hh:mm:ss.nnnnnnnnn"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIMESTAMP"
+		},
+		"format": "YYYY-MM-DD hh:mm:ss"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIMESTAMP",
+			"precision": "MILLIS"
+		},
+		"format": "YYYY-MM-DD hh:mm:ss.nnn"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIMESTAMP",
+			"precision": "MICROS"
+		},
+		"format": "YYYY-MM-DD hh:mm:ss.nnnnnn"
+	}, {
+		"schema": {
+			"bitWidth": "64",
+			"logicalType": "TIMESTAMP",
+			"precision": "NANOS"
+		},
+		"format": "YYYY-MM-DD hh:mm:ss.nnnnnnnnn"
+	}]
 }
