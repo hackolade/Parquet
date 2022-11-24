@@ -1,7 +1,7 @@
 {
     "name": "Parquet",
-    "version": "0.1.1",
-    "versionDate": "2020-01-16",
+    "version": "0.1.6",
+    "versionDate": "2022-10-28",
     "author": "hackolade",
     "engines": {
         "hackolade": "3.5.5",
