@@ -6,8 +6,7 @@ const wrapFieldsIntoJSONSchema = require('./helpers/wrapFieldsIntoJSONSchema');
 const includeMetadataInJSONSchema = require('./helpers/includeMetadataInJSONSchema');
 const pipe = require('../helpers/pipe');
 const path = require('path');
-const adaptJsonSchema = require('./helpers/adaptJsonSchema/adaptJsonSchema');
-const { setDependencies } = require('./appDependencies');
+const { adaptJsonSchema } = require('./helpers/adaptJsonSchema/adaptJsonSchema');
 
 module.exports = {
 	async reFromFile(data, logger, callback) {
@@ -37,25 +36,5 @@ module.exports = {
 		}
 	},
 
-	adaptJsonSchema(data, logger, callback, app) {
-		setDependencies(app);
-		logger.log('info', 'Adaptation of JSON Schema started...', 'Adapt JSON Schema');
-		try {
-			const jsonSchema = JSON.parse(data.jsonSchema);
-			const adaptedJsonSchema = adaptJsonSchema(jsonSchema);
-
-			logger.log('info', 'Adaptation of JSON Schema finished.', 'Adapt JSON Schema');
-
-			callback(null, {
-				jsonSchema: JSON.stringify(adaptedJsonSchema)
-			});
-		} catch(e) {
-			const errorObject = {
-				message: `${error.message}\nFile name: ${fileName}`,
-				stack: error.stack,
-			};
-			logger.log('error', errorObject, 'Adaptation of JSON Schema Error');
-			callback(errorObject);
-		}
-	},
+	adaptJsonSchema,
 };
