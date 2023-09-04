@@ -12,8 +12,8 @@ const HEADER = 'header';
 const NESTED_FIELD = 'nested field';
 const SINGLE_FIELD = 'single field';
 
-const defineFieldType = jsonSchema => {
-	if (jsonSchema.title) {
+const defineFieldType = (jsonSchema, initialParent) => {
+	if (!initialParent && jsonSchema.title) {
 		return HEADER;
 	}
 
@@ -47,14 +47,14 @@ const transformFields = getFieldDefinition => (fields, spaceAmount = 0, initialP
 			fieldBody => fieldBody.physicalType ? removeChildrenFromField(fieldBody) : fieldBody,
 			fieldBody => fieldBody.physicalType ? Object.assign({}, fieldBody, { logicalType: 'UTF8' }) : fieldBody,
 		])(fieldBody);
-		const fieldType = defineFieldType(field);
+		const fieldType = defineFieldType(field, initialParent);
 		const stringifiedField = pipe([
 			setName(fieldName),
 			transformFieldByType(fieldType),
 			prependFieldWithSpaces(spaceAmount),
 		])(field);
 
-		if (fieldType === SINGLE_FIELD) {
+		if (fieldType !== NESTED_FIELD) {
 			return wrapFieldWithParent(stringifiedField, parent);
 		}
 
