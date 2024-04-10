@@ -5,6 +5,6 @@
 	"hasUpdateScript": false,
 	"level": {
 		"entity": true,
-		"container": false
+		"container": true
 	}
 }
