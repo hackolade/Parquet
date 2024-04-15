@@ -5,6 +5,10 @@
 	"hasUpdateScript": false,
 	"level": {
 		"entity": true,
-		"container": false
+		"container": true
+	},
+	"feLevelSelector": {
+		"entity": true,
+		"container": true
 	}
 }
