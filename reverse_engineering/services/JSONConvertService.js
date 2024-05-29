@@ -8,7 +8,7 @@ const reverseGroupField = field => {
 		type,
 		properties: convertFieldSchemasToJSON(defineGroupNestedFields(field, type)),
 	});
-}
+};
 
 const isGroupType = schema => schema.isNested;
 

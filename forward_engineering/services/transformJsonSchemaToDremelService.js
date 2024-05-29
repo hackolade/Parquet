@@ -29,41 +29,48 @@ const transformNestedField = field => `${transformFieldToDremelString(field)} {\
 const transformSingleField = field => `${transformFieldToDremelString(field)};`;
 
 const transformFieldByType = type => field => {
-	switch(type) {
-		case HEADER: return transformHeader(field);
-		case NESTED_FIELD: return transformNestedField(field);
-		case SINGLE_FIELD: return transformSingleField(field);
-		default: return '';
+	switch (type) {
+		case HEADER:
+			return transformHeader(field);
+		case NESTED_FIELD:
+			return transformNestedField(field);
+		case SINGLE_FIELD:
+			return transformSingleField(field);
+		default:
+			return '';
 	}
 };
 
 const setName = name => field => Object.assign({}, field, { name });
 const isDefinition = field => Boolean(field.$ref);
 
-const transformFields = getFieldDefinition => (fields, spaceAmount = 0, initialParent = null) =>
-	Object.entries(fields).reduce((parent, [fieldName, fieldBody]) => {
-		const field = pipe([
-			fieldBody => isDefinition(fieldBody) ? getFieldDefinition(fieldBody) : fieldBody,
-			fieldBody => fieldBody.physicalType ? removeChildrenFromField(fieldBody) : fieldBody,
-			fieldBody => fieldBody.physicalType ? Object.assign({}, fieldBody, { logicalType: 'UTF8' }) : fieldBody,
-		])(fieldBody);
-		const fieldType = defineFieldType(field, initialParent);
-		const stringifiedField = pipe([
-			setName(fieldName),
-			transformFieldByType(fieldType),
-			prependFieldWithSpaces(spaceAmount),
-		])(field);
+const transformFields =
+	getFieldDefinition =>
+	(fields, spaceAmount = 0, initialParent = null) =>
+		Object.entries(fields).reduce((parent, [fieldName, fieldBody]) => {
+			const field = pipe([
+				fieldBody => (isDefinition(fieldBody) ? getFieldDefinition(fieldBody) : fieldBody),
+				fieldBody => (fieldBody.physicalType ? removeChildrenFromField(fieldBody) : fieldBody),
+				fieldBody =>
+					fieldBody.physicalType ? Object.assign({}, fieldBody, { logicalType: 'UTF8' }) : fieldBody,
+			])(fieldBody);
+			const fieldType = defineFieldType(field, initialParent);
+			const stringifiedField = pipe([
+				setName(fieldName),
+				transformFieldByType(fieldType),
+				prependFieldWithSpaces(spaceAmount),
+			])(field);
 
-		if (fieldType !== NESTED_FIELD) {
-			return wrapFieldWithParent(stringifiedField, parent);
-		}
+			if (fieldType !== NESTED_FIELD) {
+				return wrapFieldWithParent(stringifiedField, parent);
+			}
 
-		const children = getFieldChildren(field);
-		return wrapFieldWithParent(
-			transformFields(getFieldDefinition)(children, spaceAmount + SPACE_INDENT_AMOUNT, stringifiedField),
-			parent
-		);
-	}, initialParent);
+			const children = getFieldChildren(field);
+			return wrapFieldWithParent(
+				transformFields(getFieldDefinition)(children, spaceAmount + SPACE_INDENT_AMOUNT, stringifiedField),
+				parent,
+			);
+		}, initialParent);
 
 const transformSchema = (jsonSchema, definitions) => {
 	const header = transformFieldByType(HEADER)(jsonSchema);

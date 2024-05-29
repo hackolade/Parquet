@@ -5,7 +5,7 @@ const getChildren = field => {
 	}
 
 	if (items && Array.isArray(items)) {
-		return items.reduce((acc, item, i) => Object.assign({}, acc, { [`[${i}]`]: item }),{});
+		return items.reduce((acc, item, i) => Object.assign({}, acc, { [`[${i}]`]: item }), {});
 	}
 
 	return { element: items };
@@ -19,7 +19,7 @@ const getFieldChildren = field => {
 				type: 'group',
 				repetition: 'repeated',
 				properties: children,
-			}
+			},
 		};
 
 		return listMiddleLayerField;
@@ -32,7 +32,7 @@ const getFieldChildren = field => {
 				logicalType: 'MAP_KEY_VALUE',
 				repetition: 'repeated',
 				properties: children,
-			}
+			},
 		};
 
 		return mapMiddleLayerField;

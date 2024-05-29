@@ -1,34 +1,34 @@
 const { setDependencies } = require('../../appDependencies');
 const mapJsonSchema = require('./mapJsonSchema');
 
-const handleNumericType = (jsonSchema) => {
+const handleNumericType = jsonSchema => {
 	if (jsonSchema.mode === 'int') {
 		return {
 			...jsonSchema,
-			type: 'int'
-		}
+			type: 'int',
+		};
 	}
 	if (jsonSchema.mode === 'decimal') {
 		return {
 			...jsonSchema,
 			type: 'double',
-		}
+		};
 	}
 	if (jsonSchema.mode === 'double') {
 		return {
 			...jsonSchema,
 			type: 'double',
-		}
+		};
 	}
 
 	return jsonSchema;
 };
 
-const adaptSchema = (jsonSchema) => {
-	return mapJsonSchema(jsonSchema, (jsonSchemaItem) => {
+const adaptSchema = jsonSchema => {
+	return mapJsonSchema(jsonSchema, jsonSchemaItem => {
 		if (jsonSchemaItem.type === 'number') {
 			return handleNumericType(jsonSchemaItem);
-		} 
+		}
 		return jsonSchemaItem;
 	});
 };
@@ -43,9 +43,9 @@ const adaptJsonSchema = (data, logger, callback, app) => {
 		logger.log('info', 'Adaptation of JSON Schema finished.', 'Adapt JSON Schema');
 
 		callback(null, {
-			jsonSchema: JSON.stringify(adaptedJsonSchema)
+			jsonSchema: JSON.stringify(adaptedJsonSchema),
 		});
-	} catch(e) {
+	} catch (e) {
 		const errorObject = {
 			message: `${error.message}\nFile name: ${fileName}`,
 			stack: error.stack,
