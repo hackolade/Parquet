@@ -1,18 +1,13 @@
 {
-	"name": "list",
-	"erdAbbreviation": "<lst>",
-	"dtdAbbreviation": "{...}",
-	"parentType": "array",
-	"useSample": true,
+	"name": "object",
+	"parentType": "document",
+	"structureType": true,
 	"defaultValues": {
-		"properties": [],
-		"additionalItems": true,
-		"minItems": 1,
-		"maxItems": 1,
-		"uniqueItems": false
+		"subtype": "object",
+		"properties": []
 	},
 	"subtypes": {
-		"list": {
+		"object": {
 			"childValueType": [
 				"boolean",
                 "int",
