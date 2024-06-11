@@ -15,15 +15,15 @@
 		"list": {
 			"childValueType": [
 				"boolean",
-                "int",
-                "float",
-                "double",
-                "binary",
-                "fixed_len_byte_array",
-                "null",
-                "group",
-                "list",
-                "map"
+				"int",
+				"float",
+				"double",
+				"binary",
+				"fixed_len_byte_array",
+				"null",
+				"group",
+				"list",
+				"map"
 			]
 		}
 	}
