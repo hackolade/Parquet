@@ -53,7 +53,7 @@ const reverseEncoding = encoding => {
 		};
 	}
 
-	const lowerCaseValue = value.toLowerCase();
+	const lowerCaseValue = encoding.toLowerCase();
 	const encodingType = hashMap[lowerCaseValue] || encoding;
 
 	return { encoding: [encodingType] };

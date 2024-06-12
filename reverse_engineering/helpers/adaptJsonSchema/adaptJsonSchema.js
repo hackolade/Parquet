@@ -45,9 +45,9 @@ const adaptJsonSchema = (data, logger, callback, app) => {
 		callback(null, {
 			jsonSchema: JSON.stringify(adaptedJsonSchema),
 		});
-	} catch (e) {
+	} catch (error) {
 		const errorObject = {
-			message: `${error.message}\nFile name: ${fileName}`,
+			message: `${error.message}\nFile name: ${data.fileName}`,
 			stack: error.stack,
 		};
 		logger.log('error', errorObject, 'Adaptation of JSON Schema Error');
