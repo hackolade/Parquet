@@ -1,5 +1,3 @@
-'use strict';
-
 const getJsonSchemasFromInitialData = require('./helpers/getJsonSchemasFromInitialData');
 const getDefinitionsFromInitialData = require('./helpers/getDefinitionsFromInitialData');
 const transformJsonSchemaToDremelService = require('./services/transformJsonSchemaToDremelService');

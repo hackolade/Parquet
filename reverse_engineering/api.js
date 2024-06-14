@@ -1,5 +1,3 @@
-'use strict';
-
 const fileReadWriteService = require('./services/fileReadWriteService');
 const JSONConvertService = require('./services/JSONConvertService');
 const wrapFieldsIntoJSONSchema = require('./helpers/wrapFieldsIntoJSONSchema');
