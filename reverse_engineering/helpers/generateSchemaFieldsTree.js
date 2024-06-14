@@ -5,16 +5,19 @@ function generateSchemaFieldsTree(schemaElements) {
 			schema[schemaElement.name] = Object.assign(schemaElement, {
 				isNested: true,
 				fieldCount: schemaElement.num_children,
-				fields: Object.create({}, {
-					parent: {
-						value: schema,
-						enumerable: false
+				fields: Object.create(
+					{},
+					{
+						parent: {
+							value: schema,
+							enumerable: false,
+						},
+						num_children: {
+							value: schemaElement.num_children,
+							enumerable: false,
+						},
 					},
-					num_children: {
-						value: schemaElement.num_children,
-						enumerable: false
-					}
-				})
+				),
 			});
 
 			schema = schema[schemaElement.name].fields;

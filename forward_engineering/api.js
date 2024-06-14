@@ -1,5 +1,3 @@
-'use strict'
-
 const getJsonSchemasFromInitialData = require('./helpers/getJsonSchemasFromInitialData');
 const getDefinitionsFromInitialData = require('./helpers/getDefinitionsFromInitialData');
 const transformJsonSchemaToDremelService = require('./services/transformJsonSchemaToDremelService');
@@ -10,7 +8,7 @@ module.exports = {
 			const schema = JSON.parse(data.jsonSchema);
 			const dremelSchema = transformJsonSchemaToDremelService.transformSchema(
 				schema,
-				getDefinitionsFromInitialData(data, schema)
+				getDefinitionsFromInitialData(data, schema),
 			);
 
 			callback(null, dremelSchema);
@@ -28,10 +26,8 @@ module.exports = {
 		try {
 			const schemas = getJsonSchemasFromInitialData(data);
 			const dremelSchemas = schemas.map(schema =>
-				transformJsonSchemaToDremelService.transformSchema(
-					schema,
-					getDefinitionsFromInitialData(data, schema)
-				));
+				transformJsonSchemaToDremelService.transformSchema(schema, getDefinitionsFromInitialData(data, schema)),
+			);
 
 			callback(null, dremelSchemas.join('\n\n=====================\n\n'));
 		} catch (error) {
@@ -43,5 +39,5 @@ module.exports = {
 			logger.log('error', errorObject, 'Parquet Forward-Engineering Error');
 			callback(errorObject);
 		}
-	}
+	},
 };

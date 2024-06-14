@@ -7,11 +7,14 @@ const getType = field => {
 		return physicalType;
 	}
 
-	switch(type) {
+	switch (type) {
 		case 'list':
-		case 'map': return 'group';
-		case 'int': return `int${field.bitWidth}`;
-		default: return type;
+		case 'map':
+			return 'group';
+		case 'int':
+			return `int${field.bitWidth}`;
+		default:
+			return type;
 	}
 };
 
@@ -33,12 +36,7 @@ const getLogicalType = field => {
 };
 
 const transformFieldToDremelString = field => {
-	return [
-		getRepetition(field),
-		getType(field),
-		getName(field),
-		getLogicalType(field),
-	].join(' ').trim();
+	return [getRepetition(field), getType(field), getName(field), getLogicalType(field)].join(' ').trim();
 };
 
 module.exports = transformFieldToDremelString;

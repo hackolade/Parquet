@@ -22,13 +22,15 @@
 		"encoding": ["Plain"],
 		"repetition": "required",
 		"byteLength": {
-			"valueDependencies": [{
-				"value": 12,
-				"dependency": {
-					"key": "childType",
-					"value": "fixed_len_byte_array"
+			"valueDependencies": [
+				{
+					"value": 12,
+					"dependency": {
+						"key": "childType",
+						"value": "fixed_len_byte_array"
+					}
 				}
-			}]
+			]
 		}
 	},
 	"patternField": {

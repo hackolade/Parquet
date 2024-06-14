@@ -4,6 +4,6 @@ const removeChildrenFromField = field => {
 	delete newField.patternProperties;
 	delete newField.items;
 	return newField;
-}
+};
 
 module.exports = removeChildrenFromField;

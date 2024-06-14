@@ -31,20 +31,20 @@ const readParquetFile = async filePath => {
 		const metadata = await getRawMetadataFromFile(filePath);
 		const { key_value_metadata, created_by } = metadata;
 		const schema = rawFileDataTransformService.transformMetadata(metadata);
-		
+
 		return {
 			metadata: {
 				key_value_metadata,
 				created_by,
 			},
 			schema,
-			rowGroups: getRowGroups(metadata, schema)
+			rowGroups: getRowGroups(metadata, schema),
 		};
-	} catch(err) {
+	} catch (err) {
 		throw new Error(err);
 	}
 };
 
 module.exports = {
 	readParquetFile,
-}
+};

@@ -1,7 +1,8 @@
 const SPACE = '\xa0';
 
 const prependFieldWithSpaces = spaceAmount => field =>
-	field.split('\n')
+	field
+		.split('\n')
 		.map(fieldLine => prependStringWithSpaces(fieldLine, spaceAmount))
 		.join('\n');
 
@@ -12,6 +13,6 @@ const prependStringWithSpaces = (string, spaceAmount) => {
 	}
 
 	return spaces + string;
-}
+};
 
 module.exports = prependFieldWithSpaces;

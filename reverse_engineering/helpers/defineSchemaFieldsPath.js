@@ -17,6 +17,6 @@ const defineSchemaFieldsPath = (schema, parentPath = []) => {
 
 		return Object.assign(acc, { [fieldName]: defineFieldPath(fieldName, fieldBody, parentPath) });
 	}, {});
-}
+};
 
 module.exports = defineSchemaFieldsPath;

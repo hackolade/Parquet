@@ -11,12 +11,7 @@ const wrapFieldWithParent = (field, parent) => {
 		return [parentStart, field, parentEnd].join('\n');
 	}
 
-	return [
-		parentStart,
-		parentBody.join('\n'),
-		field,
-		parentEnd,
-	].join('\n');
+	return [parentStart, parentBody.join('\n'), field, parentEnd].join('\n');
 };
 
 module.exports = wrapFieldWithParent;

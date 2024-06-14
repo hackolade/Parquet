@@ -17,7 +17,7 @@ const reverseType = value => {
 	};
 };
 
-const reverseTypeLength = value => !isNaN(value) ? { byteLength: Number(value) } : {};
+const reverseTypeLength = value => (!isNaN(value) ? { byteLength: Number(value) } : {});
 
 const reverseCompression = value => {
 	const lowerCaseValue = value.toLowerCase();
@@ -49,15 +49,15 @@ const reverseEncoding = encoding => {
 	};
 	if (Array.isArray(encoding)) {
 		return {
-			encoding: encoding.map(encodingType => hashMap[encodingType.toLowerCase()] || encoding)
+			encoding: encoding.map(encodingType => hashMap[encodingType.toLowerCase()] || encoding),
 		};
 	}
 
-	const lowerCaseValue = value.toLowerCase();
+	const lowerCaseValue = encoding.toLowerCase();
 	const encodingType = hashMap[lowerCaseValue] || encoding;
 
-	return { encoding: [ encodingType ] };
-}
+	return { encoding: [encodingType] };
+};
 
 const reverseOriginalType = value => {
 	if (value === 'DECIMAL') {
@@ -65,21 +65,30 @@ const reverseOriginalType = value => {
 	}
 
 	return { logicalType: value };
-}
+};
 
 const reverseProperty = (propertyName, value) => {
-	switch(propertyName) {
-		case 'primitiveType': return reverseType(value);
-		case 'encoding': return reverseEncoding(value);
-		case 'repetitionType': return { repetition: value.toLowerCase() };
-		case 'compression': return reverseCompression(value);
-		case 'typeLength': return reverseTypeLength(value);
-		case 'originalType': return reverseOriginalType(value);
-		case 'precision': return { precision: value };
-		case 'scale': return { scale: value };
-		default: {};
+	switch (propertyName) {
+		case 'primitiveType':
+			return reverseType(value);
+		case 'encoding':
+			return reverseEncoding(value);
+		case 'repetitionType':
+			return { repetition: value.toLowerCase() };
+		case 'compression':
+			return reverseCompression(value);
+		case 'typeLength':
+			return reverseTypeLength(value);
+		case 'originalType':
+			return reverseOriginalType(value);
+		case 'precision':
+			return { precision: value };
+		case 'scale':
+			return { scale: value };
+		default: {
+		}
 	}
-}
+};
 
 const reverseFieldSchema = fieldSchema =>
 	Object.entries(fieldSchema).reduce((schema, [propertyName, value]) => {

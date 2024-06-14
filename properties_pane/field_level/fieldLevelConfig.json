@@ -127,11 +127,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -140,15 +136,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -182,13 +170,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Bit width",
 				"propertyKeyword": "bitWidth",
 				"propertyType": "select",
-				"options": [
-					"8",
-					"16",
-					"32",
-					"64",
-					"96"
-				],
+				"options": ["8", "16", "32", "64", "96"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -200,11 +182,7 @@ making sure that you maintain a proper JSON format.
 					"key": "bitWidth",
 					"value": "32"
 				},
-				"options": [
-					"",
-					"DATE",
-					"TIME"
-				],
+				"options": ["", "DATE", "TIME"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -216,11 +194,7 @@ making sure that you maintain a proper JSON format.
 					"key": "bitWidth",
 					"value": "64"
 				},
-				"options": [
-					"",
-					"TIME",
-					"TIMESTAMP"
-				],
+				"options": ["", "TIME", "TIMESTAMP"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -241,9 +215,7 @@ making sure that you maintain a proper JSON format.
 						}
 					]
 				},
-				"options": [
-					"MILLIS"
-				],
+				"options": ["MILLIS"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -264,10 +236,7 @@ making sure that you maintain a proper JSON format.
 						}
 					]
 				},
-				"options": [
-					"MICROS",
-					"NANOS"
-				],
+				"options": ["MICROS", "NANOS"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -288,11 +257,7 @@ making sure that you maintain a proper JSON format.
 						}
 					]
 				},
-				"options": [
-					"MILLIS",
-					"MICROS",
-					"NANOS"
-				],
+				"options": ["MILLIS", "MICROS", "NANOS"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -376,11 +341,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -389,15 +350,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -443,11 +396,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -456,15 +405,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -510,11 +451,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -523,15 +460,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -577,12 +506,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Logical type",
 				"propertyKeyword": "logicalType",
 				"propertyType": "select",
-				"options": [
-					"",
-					"UTF8",
-					"ENUM",
-					"UUID"
-				],
+				"options": ["", "UTF8", "ENUM", "UUID"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -658,11 +582,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -671,15 +591,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -718,10 +630,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Logical type",
 				"propertyKeyword": "logicalType",
 				"propertyType": "select",
-				"options": [
-					"",
-					"INTERVAL"
-				],
+				"options": ["", "INTERVAL"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -790,11 +699,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -803,15 +708,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "compressionCodec",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Uncompressed",
-					"Snappy",
-					"GZip",
-					"LZO",
-					"BROTLI",
-					"LZ4",
-					"ZSTD"
-				]
+				"options": ["Uncompressed", "Snappy", "GZip", "LZO", "BROTLI", "LZ4", "ZSTD"]
 			},
 			{
 				"propertyName": "Encoding",
@@ -848,12 +745,7 @@ making sure that you maintain a proper JSON format.
 			"sample",
 			"comments"
 		],
-		"null": [
-			"name",
-			"description",
-			"type",
-			"comments"
-		],
+		"null": ["name", "description", "type", "comments"],
 		"___1": [],
 		"group": [
 			"name",
@@ -867,11 +759,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional",
-					"repeated"
-				],
+				"options": ["required", "optional", "repeated"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -893,10 +781,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional"
-				],
+				"options": ["required", "optional"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -917,10 +802,7 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Repetition level",
 				"propertyKeyword": "repetition",
 				"propertyType": "select",
-				"options": [
-					"required",
-					"optional"
-				],
+				"options": ["required", "optional"],
 				"data": "options",
 				"valueType": "string"
 			},
@@ -931,4 +813,4 @@ making sure that you maintain a proper JSON format.
 			"comments"
 		]
 	}
-} 
+}

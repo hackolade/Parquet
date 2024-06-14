@@ -8,10 +8,7 @@ const pipe = require('../../helpers/pipe');
 const { KEY_VALUE } = require('../constants');
 
 const transformRepetitionType = repetitionTypeEnum => ({
-	repetitionType: parquet_util.getThriftEnum(
-		parquet_thrift.FieldRepetitionType,
-		repetitionTypeEnum
-	),
+	repetitionType: parquet_util.getThriftEnum(parquet_thrift.FieldRepetitionType, repetitionTypeEnum),
 });
 
 const transformType = typeEnum => ({
@@ -31,25 +28,35 @@ const transformEncoding = encodingArray => ({
 });
 
 const transformFieldProperty = (propertyName, value) => {
-	switch(propertyName) {
-		case 'name': return { name: value };
-		case 'type': return isNumber(value) ? transformType(value) : {};
-		case 'repetition_type': return isNumber(value) ? transformRepetitionType(value) : {};
-		case 'converted_type': return isNumber(value) ? transformConvertedType(value) : {};
-		case 'scale': return isNumber(value) ? { scale: value } : {};
-		case 'precision': return isNumber(value) ? { precision: value } : {};
-		case 'num_children': return { num_children: value };
-		case 'codec': return transformCodec(value);
-		case 'encodings': return transformEncoding(value);
-		default: {};
+	switch (propertyName) {
+		case 'name':
+			return { name: value };
+		case 'type':
+			return isNumber(value) ? transformType(value) : {};
+		case 'repetition_type':
+			return isNumber(value) ? transformRepetitionType(value) : {};
+		case 'converted_type':
+			return isNumber(value) ? transformConvertedType(value) : {};
+		case 'scale':
+			return isNumber(value) ? { scale: value } : {};
+		case 'precision':
+			return isNumber(value) ? { precision: value } : {};
+		case 'num_children':
+			return { num_children: value };
+		case 'codec':
+			return transformCodec(value);
+		case 'encodings':
+			return transformEncoding(value);
+		default: {
+		}
 	}
-}
+};
 
 const transformField = field => {
 	return Object.entries(field).reduce((acc, [propertyName, value]) => {
 		return Object.assign(acc, transformFieldProperty(propertyName, value));
 	}, {});
-}
+};
 
 const defineFieldAdditionalData = fieldsMetadata => fields =>
 	Object.entries(fields).reduce((acc, [name, field]) => {
@@ -60,7 +67,7 @@ const defineFieldAdditionalData = fieldsMetadata => fields =>
 		if (field.fields) {
 			return Object.assign(acc, {
 				[name]: Object.assign({}, field, {
-					fields: defineFieldAdditionalData(fieldsMetadata)(field.fields)
+					fields: defineFieldAdditionalData(fieldsMetadata)(field.fields),
 				}),
 			});
 		}
@@ -79,7 +86,7 @@ const getFieldsMetadata = rawMetadata => {
 	}
 
 	return firstRowGroup.columns;
-}
+};
 
 const getRowGroups = (rawMetadata, schema) => {
 	if (!Array.isArray(rawMetadata.row_groups)) {
@@ -88,27 +95,22 @@ const getRowGroups = (rawMetadata, schema) => {
 
 	return rawMetadata.row_groups.map((rowGroup, index) => ({
 		rowGroupName: `Row group ${index}`,
-		rowGroupColumns: (rowGroup.columns || [])
-			.map(column => ({
-				name: column.meta_data.path_in_schema
-					.filter(name => name !== KEY_VALUE)
-					.join('.')
-			}))
+		rowGroupColumns: (rowGroup.columns || []).map(column => ({
+			name: column.meta_data.path_in_schema.filter(name => name !== KEY_VALUE).join('.'),
+		})),
 	}));
 };
 
 const transformMetadata = rawMetadata => {
 	const { schema } = rawMetadata;
 	const fieldsMetadata = getFieldsMetadata(rawMetadata);
-	const transformedFields = schema.slice(1).map((field) => transformField(field));
-	return pipe([
-		generateSchemaFieldsTree,
-		defineSchemaFieldsPath,
-		defineFieldAdditionalData(fieldsMetadata),
-	])(transformedFields);
-}
+	const transformedFields = schema.slice(1).map(field => transformField(field));
+	return pipe([generateSchemaFieldsTree, defineSchemaFieldsPath, defineFieldAdditionalData(fieldsMetadata)])(
+		transformedFields,
+	);
+};
 
 module.exports = {
 	transformMetadata,
 	getRowGroups,
-}
+};

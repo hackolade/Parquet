@@ -1,5 +1,3 @@
-'use strict'
-
 const fileReadWriteService = require('./services/fileReadWriteService');
 const JSONConvertService = require('./services/JSONConvertService');
 const wrapFieldsIntoJSONSchema = require('./helpers/wrapFieldsIntoJSONSchema');
@@ -21,10 +19,10 @@ module.exports = {
 			])(JSONSchema);
 
 			callback(null, {
-				containerName:"New namespace",
-				jsonSchema: JSON.stringify( { ...preparedJSONSchema, rowGroups }, null, 4),
+				containerName: 'New namespace',
+				jsonSchema: JSON.stringify({ ...preparedJSONSchema, rowGroups }, null, 4),
 			});
-		} catch(error) {
+		} catch (error) {
 			const fileName = path.basename(data.filePath);
 			const errorObject = {
 				message: `${error.message}\nFile name: ${fileName}`,
