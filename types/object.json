@@ -1,0 +1,25 @@
+{
+	"name": "object",
+	"parentType": "document",
+	"structureType": true,
+	"defaultValues": {
+		"subtype": "object",
+		"properties": []
+	},
+	"subtypes": {
+		"object": {
+			"childValueType": [
+				"boolean",
+				"int",
+				"float",
+				"double",
+				"binary",
+				"fixed_len_byte_array",
+				"null",
+				"group",
+				"list",
+				"map"
+			]
+		}
+	}
+}
