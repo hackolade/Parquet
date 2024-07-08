@@ -18,7 +18,8 @@
 				"null",
 				"group",
 				"list",
-				"map"
+				"map",
+				"object"
 			]
 		}
 	}
