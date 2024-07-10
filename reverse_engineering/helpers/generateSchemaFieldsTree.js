@@ -22,7 +22,7 @@ function generateSchemaFieldsTree(schemaElements) {
 
 			schema = schema[schemaElement.name].fields;
 		} else {
-			schema[schemaElement.name] = Object.assign({}, schemaElement);
+			schema[schemaElement.name] = { ...schemaElement };
 		}
 
 		while (schema.parent && Object.keys(schema).length === schema.num_children) {

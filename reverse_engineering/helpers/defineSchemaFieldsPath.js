@@ -3,10 +3,10 @@ const auxiliaryFieldProperties = ['num_children', 'parent'];
 const defineFieldPath = (fieldName, fieldBody, parentPath) => {
 	const path = parentPath.concat([fieldName]);
 	if (!fieldBody.fields) {
-		return Object.assign({}, fieldBody, { path });
+		return { ...fieldBody, path };
 	}
 
-	return Object.assign({}, fieldBody, { fields: defineSchemaFieldsPath(fieldBody.fields, path) });
+	return { ...fieldBody, fields: defineSchemaFieldsPath(fieldBody.fields, path) };
 };
 
 const defineSchemaFieldsPath = (schema, parentPath = []) => {
@@ -15,7 +15,10 @@ const defineSchemaFieldsPath = (schema, parentPath = []) => {
 			return acc;
 		}
 
-		return Object.assign(acc, { [fieldName]: defineFieldPath(fieldName, fieldBody, parentPath) });
+		return {
+			...acc,
+			[fieldName]: defineFieldPath(fieldName, fieldBody, parentPath),
+		};
 	}, {});
 };
 

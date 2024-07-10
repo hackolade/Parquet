@@ -41,7 +41,7 @@ const transformFieldByType = type => field => {
 	}
 };
 
-const setName = name => field => Object.assign({}, field, { name });
+const setName = name => field => ({ ...field, name });
 const isDefinition = field => Boolean(field.$ref);
 
 const transformFields =
@@ -51,8 +51,7 @@ const transformFields =
 			const field = pipe([
 				fieldBody => (isDefinition(fieldBody) ? getFieldDefinition(fieldBody) : fieldBody),
 				fieldBody => (fieldBody.physicalType ? removeChildrenFromField(fieldBody) : fieldBody),
-				fieldBody =>
-					fieldBody.physicalType ? Object.assign({}, fieldBody, { logicalType: 'UTF8' }) : fieldBody,
+				fieldBody => (fieldBody.physicalType ? { ...fieldBody, logicalType: 'UTF8' } : fieldBody),
 			])(fieldBody);
 			const fieldType = defineFieldType(field, initialParent);
 			const stringifiedField = pipe([
