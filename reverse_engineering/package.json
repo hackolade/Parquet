@@ -1,11 +1,4 @@
 {
-  "name": "Parquet",
-  "version": "1.0.0",
-  "description": "",
-  "author": "Hackolade",
-  "dependencies": {
-    "parquetjs-lite": "0.8.5"
-  },
-  "type": "file",
-  "installed": true
-}
+    "name": "Parquet",
+    "type": "file"
+  }

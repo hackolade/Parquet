@@ -158,7 +158,8 @@ making sure that you maintain a proper JSON format.
 			}
 		],
 		"columnsRatio": [4.1, 5]
-	}, {
+	},
+	{
 		"lowerTab": "Row groups",
 		"structure": [
 			{
@@ -166,22 +167,24 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "group",
 				"propertyKeyword": "rowGroups",
 				"propertyTooltip": "",
-				"structure": [{
-					"propertyName": "Name",
-					"propertyKeyword": "rowGroupName",
-					"propertyType": "text"
-				},
-				{
-					"propertyName": "Columns",
-					"propertyKeyword": "rowGroupColumns",
-					"propertyType": "compositeKeySetter",
-					"disabledItemStrategy": "default",
-					"setPrimaryKey": false,
-					"abbr": " ",
-					"attributeList": [],
-					"template": "collectiontree",
-					"isCompositeKey": true
-				}]
+				"structure": [
+					{
+						"propertyName": "Name",
+						"propertyKeyword": "rowGroupName",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Columns",
+						"propertyKeyword": "rowGroupColumns",
+						"propertyType": "compositeKeySetter",
+						"disabledItemStrategy": "default",
+						"setPrimaryKey": false,
+						"abbr": " ",
+						"attributeList": [],
+						"template": "collectiontree",
+						"isCompositeKey": true
+					}
+				]
 			}
 		],
 		"columnsRatio": [4.1, 5]

@@ -1,13 +1,16 @@
 {
 	"name": "map-properties",
 	"parentType": "document",
-	"properties": [{
-		"name": "key",
-		"type": "binary",
-		"logicalType": "UTF8",
-		"repetition": "required"
-	}, {
-		"name": "value",
-		"type": "binary"
-	}]
+	"properties": [
+		{
+			"name": "key",
+			"type": "binary",
+			"logicalType": "UTF8",
+			"repetition": "required"
+		},
+		{
+			"name": "value",
+			"type": "binary"
+		}
+	]
 }

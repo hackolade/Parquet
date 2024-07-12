@@ -10,5 +10,21 @@
 		"minItems": 1,
 		"maxItems": 1,
 		"uniqueItems": false
+	},
+	"subtypes": {
+		"list": {
+			"childValueType": [
+				"boolean",
+				"int",
+				"float",
+				"double",
+				"binary",
+				"fixed_len_byte_array",
+				"null",
+				"group",
+				"list",
+				"map"
+			]
+		}
 	}
 }
