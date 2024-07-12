@@ -69,23 +69,29 @@ const reverseOriginalType = value => {
 
 const reverseProperty = (propertyName, value) => {
 	switch (propertyName) {
-		case 'primitiveType':
+		case 'primitiveType': {
 			return reverseType(value);
-		case 'encoding':
+		}
+		case 'encoding': {
 			return reverseEncoding(value);
-		case 'repetitionType':
+		}
+		case 'repetitionType': {
 			return { repetition: value.toLowerCase() };
-		case 'compression':
+		}
+		case 'compression': {
 			return reverseCompression(value);
-		case 'typeLength':
+		}
+		case 'typeLength': {
 			return reverseTypeLength(value);
-		case 'originalType':
+		}
+		case 'originalType': {
 			return reverseOriginalType(value);
-		case 'precision':
+		}
+		case 'precision': {
 			return { precision: value };
-		case 'scale':
+		}
+		case 'scale': {
 			return { scale: value };
-		default: {
 		}
 	}
 };

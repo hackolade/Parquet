@@ -1,11 +1,20 @@
 const getChildren = field => {
 	const { items, properties, patternProperties } = field;
 	if (properties || patternProperties) {
-		return Object.assign({}, properties, patternProperties);
+		return {
+			...properties,
+			...patternProperties,
+		};
 	}
 
 	if (items && Array.isArray(items)) {
-		return items.reduce((acc, item, i) => Object.assign({}, acc, { [`[${i}]`]: item }), {});
+		return items.reduce(
+			(acc, item, i) => ({
+				...acc,
+				[`[${i}]`]: item,
+			}),
+			{},
+		);
 	}
 
 	return { element: items };

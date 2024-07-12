@@ -1,5 +1,5 @@
 const removeChildrenFromField = field => {
-	const newField = Object.assign({}, field);
+	const newField = { ...field };
 	delete newField.properties;
 	delete newField.patternProperties;
 	delete newField.items;

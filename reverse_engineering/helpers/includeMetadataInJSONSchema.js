@@ -5,7 +5,7 @@ const includeCreator = createdBy => JSONSchema => {
 		return JSONSchema;
 	}
 
-	return Object.assign({}, JSONSchema, { creator: createdBy });
+	return { ...JSONSchema, creator: createdBy };
 };
 
 const includeExtra = keyValueMetadata => JSONSchema => {
@@ -13,9 +13,10 @@ const includeExtra = keyValueMetadata => JSONSchema => {
 		return JSONSchema;
 	}
 
-	return Object.assign({}, JSONSchema, {
+	return {
+		...JSONSchema,
 		extra: keyValueMetadata.map(({ key, value }) => ({ extraKey: key, extraValue: value })),
-	});
+	};
 };
 
 const includeMetadataInJSONSchema = metadata => JSONSchema =>

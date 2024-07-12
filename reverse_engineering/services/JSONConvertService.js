@@ -4,10 +4,11 @@ const defineGroupNestedFields = require('../helpers/defineGroupNestedFields');
 
 const reverseGroupField = field => {
 	const type = defineGroupType(field);
-	return Object.assign({}, reverseFieldSchema(field), {
+	return {
+		...reverseFieldSchema(field),
 		type,
 		properties: convertFieldSchemasToJSON(defineGroupNestedFields(field, type)),
-	});
+	};
 };
 
 const isGroupType = schema => schema.isNested;

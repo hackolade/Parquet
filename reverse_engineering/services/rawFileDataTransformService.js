@@ -29,25 +29,32 @@ const transformEncoding = encodingArray => ({
 
 const transformFieldProperty = (propertyName, value) => {
 	switch (propertyName) {
-		case 'name':
+		case 'name': {
 			return { name: value };
-		case 'type':
+		}
+		case 'type': {
 			return isNumber(value) ? transformType(value) : {};
-		case 'repetition_type':
+		}
+		case 'repetition_type': {
 			return isNumber(value) ? transformRepetitionType(value) : {};
-		case 'converted_type':
+		}
+		case 'converted_type': {
 			return isNumber(value) ? transformConvertedType(value) : {};
-		case 'scale':
+		}
+		case 'scale': {
 			return isNumber(value) ? { scale: value } : {};
-		case 'precision':
+		}
+		case 'precision': {
 			return isNumber(value) ? { precision: value } : {};
-		case 'num_children':
+		}
+		case 'num_children': {
 			return { num_children: value };
-		case 'codec':
+		}
+		case 'codec': {
 			return transformCodec(value);
-		case 'encodings':
+		}
+		case 'encodings': {
 			return transformEncoding(value);
-		default: {
 		}
 	}
 };
@@ -66,26 +73,26 @@ const defineFieldAdditionalData = fieldsMetadata => fields =>
 
 		if (field.fields) {
 			return Object.assign(acc, {
-				[name]: Object.assign({}, field, {
+				[name]: {
+					...field,
 					fields: defineFieldAdditionalData(fieldsMetadata)(field.fields),
-				}),
+				},
 			});
 		}
 
 		const additionalData = getFieldAdditionalData(fieldsMetadata, field);
 		const additionalFieldMeta = additionalData ? additionalData.meta_data : {};
 		return Object.assign(acc, {
-			[name]: Object.assign({}, field, transformField(additionalFieldMeta)),
+			[name]: {
+				...field,
+				...transformField(additionalFieldMeta),
+			},
 		});
 	}, {});
 
 const getFieldsMetadata = rawMetadata => {
 	const [firstRowGroup] = rawMetadata.row_groups;
-	if (!firstRowGroup || !firstRowGroup.columns) {
-		return [];
-	}
-
-	return firstRowGroup.columns;
+	return firstRowGroup?.columns || [];
 };
 
 const getRowGroups = (rawMetadata, schema) => {
