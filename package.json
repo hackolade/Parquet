@@ -29,6 +29,7 @@
     "icon_url": "logo.png",
     "disabled": false,
     "dependencies": {
+        "esbuild-plugin-copy": "2.1.1",
         "lodash": "4.17.21",
         "parquetjs-lite": "0.8.5"
     },
