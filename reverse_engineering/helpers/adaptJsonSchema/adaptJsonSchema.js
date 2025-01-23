@@ -1,4 +1,3 @@
-const { setDependencies } = require('../../appDependencies');
 const mapJsonSchema = require('./mapJsonSchema');
 
 const handleNumericType = jsonSchema => {
@@ -34,7 +33,6 @@ const adaptSchema = jsonSchema => {
 };
 
 const adaptJsonSchema = (data, logger, callback, app) => {
-	setDependencies(app);
 	logger.log('info', 'Adaptation of JSON Schema started...', 'Adapt JSON Schema');
 	try {
 		const jsonSchema = JSON.parse(data.jsonSchema);
