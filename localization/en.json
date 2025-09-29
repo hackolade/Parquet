@@ -15,7 +15,7 @@
 	"TOOLBAR___ADD_ATTRIBUTE": "Add Column",
 	"TOOLBAR___INSERT_FIELD": "Insert Column",
 	"TOOLBAR___APPEND_FIELD": "Append Column",
-	"TOOLBAR___TOGGLE_FIELD_DETAILS": "Toogle column details",
+	"TOOLBAR___FIELD_DETAILS": "Column details",
 	"TOOLBAR___SHOW_FOREIGN_MASTER": "Toggle foreign master",
 	"TOOLBAR___SHOW_MODEL_VIEW": "Toggle model views",
 	"TOOLBAR___DISTRIBUTE_ORTHOGONALLY": "Distribute messages orthogonally",
