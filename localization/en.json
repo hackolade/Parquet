@@ -141,5 +141,20 @@
 	"CONTEXT_MENU___CONVERT_PATTERN_TO_REGULAR_FIELD": "Convert to Regular Column",
 	"MODAL_WINDOW___DB_CONNECTION_PROCESS": "Parquet Reverse-Engineering Process",
 	"MODAL_WINDOW___DB_CONNECTIONS_LIST_TITLE": "Parquet Connections",
-	"COLLECTION_SCHEMA_ROOT_TYPE": "row"
+	"COLLECTION_SCHEMA_ROOT_TYPE": "row",
+
+	"MAIN_MENU___ATTRIBUTES": "Column in Message Boxes",
+	"MAIN_MENU___DESCRIPTIONS": "Description in Message Boxes",
+	"MAIN_MENU___HIDE_ALL_ATTRIBUTES": "Empty Message Boxes",
+	"MAIN_MENU___REQUIRED_ATTRIBUTES": "Required Columns",
+	"MAIN_MENU___NULLABLE_ATTRIBUTES": "Nullable Columns",
+	"TOOLBAR___ATTRIBUTES": "Column in message boxes",
+	"TOOLBAR___DESCRIPTIONS": "Description in message boxes",
+	"TOOLBAR___HIDE_ALL_ATTRIBUTES": "Empty message boxes",
+	"TOOLBAR___REQUIRED_ATTRIBUTES": "Required columns",
+	"TOOLBAR___NULLABLE_ATTRIBUTES": "Nullable columns",
+	"MODAL_WINDOW___OPTIONS_DISPLAY_ERD_V_ENTITY_BOX_CONTENT": "Display of message box content",
+	"MODAL_WINDOW___OPTIONS_DISPLAY_ERD_V_FIELDS": "Columns",
+	"MODAL_WINDOW___OPTIONS_DISPLAY_REQUIRED_ATTRIBUTES": "Required columns",
+	"MODAL_WINDOW___OPTIONS_DISPLAY_NULLABLE_ATTRIBUTES": "Nullable columns"
 }
